@@ -1,11 +1,24 @@
 .app {
   text-align: center;
+  display: flex;
+  padding: 16px;
 }
 
 
 // Canvas 컴포넌트
+.container {
+  width: 75%;
 
+  canvas {
+    border: 3px solid rgb(131, 197, 251);
+  }
+}
 
 
 // List 컴포넌트
-
+.box {
+  width: 20%;
+  background-color: rgb(238, 247, 251);
+  border-radius: 8px;
+  box-shadow: 1px 4px 4px 1px rgb(216, 215, 215);
+}
