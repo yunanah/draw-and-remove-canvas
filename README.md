@@ -1,70 +1,16 @@
-# Getting Started with Create React App
+# Lunit Challenge (Frontend Engineering coding interview)
+Frontend Engineering 직무 과제 제출용 Repository 입니다 (백유라)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 요구사항 이외에 추가된 사항들
+- Sass를 활용한 스타일 코드 작성
+  - 따라서 반드시 npm install 후 실행 바랍니다. 
 
-## Available Scripts
+## 기술스택
+- React
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 과제 내용
+- Canvas와 List 컴포넌트로 구성된 페이지
+- Canvas에 마우스 클릭으로 그리기를 시작할 수 있고 마우스클릭을 떼면 그 점에서 그리기가 끝나고 시작점과 끝점을 이어 다각형이 완성됨
+- 완성한 다각형들은 오른쪽 List 에 항목으로 추가됨
+- Delete Mode에는 (체크박스 선택 시) 다각형의 내부를 클릭해서 삭제할 수 있고 새로 그리기 기능은 사용할 수 없음
+- 오른쪽 하단의 +/- 버튼을 사용해 Canvas의 정중앙을 기준으로 화면의 배율을 조절할 수 있음 (원래 배열로 돌아왔을 때 처음 다각형 형태 유지)
