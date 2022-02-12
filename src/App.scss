@@ -40,9 +40,18 @@
     flex-direction: column;
     font-size: 32px;
 
+    p {
+      font-size: 18px;
+      color:blue;
+      padding: 6px 16px;
+      background-color: #eee;
+      border-radius: 8px;
+    }
+
     .zoom-in {
       margin-bottom: 4px;
       color:rgb(6, 171, 226);
+      z-index: 2;
 
       &:hover {
         color:rgb(75, 191, 241);
@@ -51,6 +60,7 @@
 
     .zoom-out {
       color:rgb(155, 219, 235);
+      z-index: 2;
 
       &:hover {
         color:rgb(123, 202, 236);
