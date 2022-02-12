@@ -3,7 +3,7 @@ Frontend Engineering 직무 과제 제출용 Repository 입니다 (백유라)
 
 ## 요구사항 이외에 추가된 사항들
 - Sass를 활용한 스타일 코드 작성
-  - 따라서 반드시 npm install 후 실행 바랍니다. 
+  - 따라서 반드시 프로젝트 폴더에서 npm install 후 실행 바랍니다. 
 
 ## 기술스택
 - React
