@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
-import { faSquareCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCircleMinus, faCirclePlus, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect, useRef, useState } from 'react';
 import './App.scss';
 
@@ -28,7 +28,8 @@ function Canvas(props) {
   const [deleteMode, setDeleteMode] = useState(false) // 삭제하기 모드 state
   const [isDrawing, setIsDrawing] = useState(false)
   const [path, setPath] = useState(null) // 새로운 마우스 움직인 경로 state
-  const [idx, setIdx] = useState(1)
+  const [idx, setIdx] = useState(1) // path 생성 인덱스 state
+  const [screenRate, setScreenRate] = useState(0) // 화면 배율 state
   const [ctx, setCtx] = useState()
 
   useEffect(() => {
@@ -135,6 +136,10 @@ function Canvas(props) {
           // onClick={deleteMode ? deletePolygon : }
           // onMouseLeave={finishDrawing}      
         ></canvas>
+        <div className="rate-control">
+          <FontAwesomeIcon className="zoom-in" icon={faCirclePlus} />
+          <FontAwesomeIcon className="zoom-out" icon={faCircleMinus} />
+        </div>
     </div>
   );
 }
