@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquare } from '@fortawesome/free-regular-svg-icons'
 import React, { useEffect, useRef, useState } from 'react';
 import './App.scss';
 
@@ -31,9 +33,9 @@ function Canvas(props) {
   useEffect(() => {
     // 캔버스 기본 설정 
     const canvas = canvasRef.current // 캔버스 DOM을 선택
-    canvas.width = 500 // 캔버스 너비
+    canvas.width = 800 // 캔버스 너비
     // canvas.height = window.innerHeight * 0.95 
-    canvas.height = 500 // 캔버스 높이
+    canvas.height = 600 // 캔버스 높이
     setCanvasInfo([canvas.width, canvas.height])
 
     // console.log(canvas.width, canvas.height)
@@ -51,7 +53,7 @@ function Canvas(props) {
     console.log('paths', paths)
     // console.log(canvasInfo)
     // 캔버스에 그려진 이전 ctx 상태를 지우고 paths 배열에 저장된 것들을 다시 그려줌 
-    contextRef.current.clearRect(0, 0, 500, 500)
+    contextRef.current.clearRect(0, 0, 800, 600)
     Object.values(paths).forEach((a, i) => {
       // console.log(a)
       contextRef.current.stroke(a)
@@ -99,6 +101,7 @@ function Canvas(props) {
 
   return (
     <div className="container">
+        <FontAwesomeIcon icon={faSquare} />
         <canvas
           ref={canvasRef}
           onMouseDown={startDrawing}
@@ -122,7 +125,7 @@ function List(props) {
       {
         Object.keys(paths).map((a, i) => {
           return (
-            <span>{a}</span>
+            <span key={i}>{a}</span>
           )
         })
       }
