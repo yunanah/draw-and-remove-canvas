@@ -26,11 +26,14 @@ function Canvas(props) {
   const contextRef = useRef(null)
 
   const [deleteMode, setDeleteMode] = useState(false) // 삭제하기 모드 state
-  const [isDrawing, setIsDrawing] = useState(false)
+  const [isDrawing, setIsDrawing] = useState(false) // 그리기 모드 state
   const [path, setPath] = useState(null) // 새로운 마우스 움직인 경로 state
   const [idx, setIdx] = useState(1) // path 생성 인덱스 state
-  const [screenRate, setScreenRate] = useState(0) // 화면 배율 state
+  const [scaleRate, setScaleRate] = useState(1.0) // 화면 배율 state
   const [ctx, setCtx] = useState()
+
+  //화면 배율 조절을 위한 변수 설정 
+  const scaleMultiplier = 0.8
 
   useEffect(() => {
     // 캔버스 기본 설정 
@@ -53,6 +56,9 @@ function Canvas(props) {
   useEffect(() => {
     console.log('lets repaint paths', paths)
 
+    // 중앙을 기준으로 캔버스에 배율 적용
+    contextRef.current.setTransform(scaleRate, 0, 0, scaleRate, -(scaleRate-1)*(window.innerWidth/2), -(scaleRate-1)*(window.innerHeight/2))
+
     // 캔버스에 그려진 이전 ctx 상태를 지우고 paths 배열에 저장된 것들을 다시 그려줌 
     contextRef.current.clearRect(0, 0, 800, 600)
     if (paths) {
@@ -62,7 +68,7 @@ function Canvas(props) {
       })
     }
 
-  }, [paths])
+  }, [paths, scaleRate])
 
   // 그리기 시작 함수
   const startDrawing = () => {
@@ -122,6 +128,16 @@ function Canvas(props) {
     }
   }
 
+  // 화면 배율 크게
+  const plusScale = () => {
+    setScaleRate(scaleRate/scaleMultiplier)
+  }
+
+  // 화면 배율 작게
+  const minusScale = () => {
+    setScaleRate(scaleRate*scaleMultiplier)
+  }
+
   return (
     <div className="container">
         <span onClick={() => {
@@ -134,8 +150,9 @@ function Canvas(props) {
           onMouseMove={deleteMode ? null : drawing}    
         ></canvas>
         <div className="rate-control">
-          <FontAwesomeIcon className="zoom-in" icon={faCirclePlus} />
-          <FontAwesomeIcon className="zoom-out" icon={faCircleMinus} />
+          <p>{scaleRate.toFixed(2) * 100}%</p>
+          <FontAwesomeIcon className="zoom-in" icon={faCirclePlus} onClick={plusScale} />
+          <FontAwesomeIcon className="zoom-out" icon={faCircleMinus} onClick={minusScale} />
         </div>
     </div>
   );
