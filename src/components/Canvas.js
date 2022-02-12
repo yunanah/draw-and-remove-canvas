@@ -46,16 +46,16 @@ function Canvas(props) {
     console.log('lets repaint paths', paths)
 
     // 중앙을 기준으로 캔버스에 배율 적용
-    ctx.setTransform(scaleRate, 0, 0, scaleRate, -(scaleRate-1)*(window.innerWidth/2), -(scaleRate-1)*(window.innerHeight/2))
+    contextRef.current.setTransform(scaleRate, 0, 0, scaleRate, -(scaleRate-1)*(window.innerWidth/2), -(scaleRate-1)*(window.innerHeight/2))
 
-    // 캔버스에 그려진 이전 ctx 상태를 지움
-    ctx.clearRect(0, 0, 800, 600)
+    // 캔버스에 그려진 이전 contextRef.current 상태를 지움
+    contextRef.current.clearRect(0, 0, 800, 600)
 
     // paths 배열에 저장된 다각형 path들을 다시 그려줌
     if (paths) {
       Object.values(paths).forEach((a, i) => {
         // console.log(a)
-        ctx.stroke(a)
+        contextRef.current.stroke(a)
       })
     }
 
