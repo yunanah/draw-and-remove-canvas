@@ -4,6 +4,7 @@ import './App.scss';
 
 function App() {
 
+  //state
   const [paths, setPaths] = useState({}) // 캔버스에 생성된 다각형 path를 Path2D 객체로 저장한 배열 state
 
   // render
@@ -18,10 +19,11 @@ function App() {
 // List 컴포넌트
 function List(props) {
 
+  //props
   const { paths } = props
+  // console.log(Object.keys(paths))
 
-  console.log(Object.keys(paths))
-
+  //render
   return (
     <div className="box">
       {

@@ -7,23 +7,27 @@ import '../styles/Canvas.scss'
 // Canvas 컴포넌트 
 function Canvas(props) {
 
+  //props
   const { paths, setPaths } = props
 
+  //refs
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
 
+  //states
   const [deleteMode, setDeleteMode] = useState(false) // 삭제하기 모드 state
   const [isDrawing, setIsDrawing] = useState(false) // 그리기 모드 state
   const [path, setPath] = useState(null) // 새로운 마우스 움직인 경로 state
   const [idx, setIdx] = useState(1) // path 생성 인덱스 state
   const [scaleRate, setScaleRate] = useState(1.0) // 화면 배율 state
-  const [ctx, setCtx] = useState()
+  const [ctx, setCtx] = useState() // context state
 
   //화면 배율 조절을 위한 변수 설정 
   const scaleMultiplier = 0.8
 
   useEffect(() => {
     // 캔버스 기본 설정 
+    console.log('hello')
     const canvas = canvasRef.current // 캔버스 DOM을 선택
     canvas.width = 800 // 캔버스 너비
     canvas.height = 600 // 캔버스 높이
@@ -36,20 +40,22 @@ function Canvas(props) {
 
     setCtx(contextRef.current)
 
-  }, [paths])
+  }, [])
 
   useEffect(() => {
     console.log('lets repaint paths', paths)
 
     // 중앙을 기준으로 캔버스에 배율 적용
-    contextRef.current.setTransform(scaleRate, 0, 0, scaleRate, -(scaleRate-1)*(window.innerWidth/2), -(scaleRate-1)*(window.innerHeight/2))
+    ctx.setTransform(scaleRate, 0, 0, scaleRate, -(scaleRate-1)*(window.innerWidth/2), -(scaleRate-1)*(window.innerHeight/2))
 
-    // 캔버스에 그려진 이전 ctx 상태를 지우고 paths 배열에 저장된 것들을 다시 그려줌 
-    contextRef.current.clearRect(0, 0, 800, 600)
+    // 캔버스에 그려진 이전 ctx 상태를 지움
+    ctx.clearRect(0, 0, 800, 600)
+
+    // paths 배열에 저장된 다각형 path들을 다시 그려줌
     if (paths) {
       Object.values(paths).forEach((a, i) => {
-        console.log(a)
-        contextRef.current.stroke(a)
+        // console.log(a)
+        ctx.stroke(a)
       })
     }
 
@@ -99,8 +105,10 @@ function Canvas(props) {
   const deletePolygon = (e) => {
     let x = e.pageX
     let y = e.pageY
+
+    // 삭제 모드인 경우 paths state에 저장된 다각형 경로들 중 클릭한 점이 포함된 것이 있으면 paths에서 삭제함
     if (deleteMode) {
-      console.log('hi')
+      // console.log('hi')
       Object.entries(paths).forEach((a, i) => {
         if (ctx.isPointInPath(a[1], x, y)) {
           let clonePaths = {...paths} // paths 복제한 객체
@@ -115,12 +123,12 @@ function Canvas(props) {
     }
   }
 
-  // 화면 배율 크게
+  // 화면 배율 크게 : 나누기
   const plusScale = () => {
     setScaleRate(scaleRate/scaleMultiplier)
   }
 
-  // 화면 배율 작게
+  // 화면 배율 작게 : 곱하기
   const minusScale = () => {
     setScaleRate(scaleRate*scaleMultiplier)
   }
