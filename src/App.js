@@ -95,7 +95,6 @@ function Canvas(props) {
       if (!isDrawing) {
         ctx.beginPath()
         ctx.moveTo(offsetX, offsetY)
-        // path.moveTo(offsetX, offsetY)
       } else {
         path.lineTo(offsetX, offsetY)
         ctx.lineTo(offsetX, offsetY)
@@ -132,9 +131,7 @@ function Canvas(props) {
           ref={canvasRef}
           onMouseDown={deleteMode ? deletePolygon : startDrawing}
           onMouseUp={deleteMode ? null : finishDrawing}
-          onMouseMove={deleteMode ? null : drawing}
-          // onClick={deleteMode ? deletePolygon : }
-          // onMouseLeave={finishDrawing}      
+          onMouseMove={deleteMode ? null : drawing}    
         ></canvas>
         <div className="rate-control">
           <FontAwesomeIcon className="zoom-in" icon={faCirclePlus} />
