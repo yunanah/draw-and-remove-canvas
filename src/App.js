@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Canvas from './components/Canvas';
-import './App.scss';
+import './styles/App.scss';
 
 function App() {
 
