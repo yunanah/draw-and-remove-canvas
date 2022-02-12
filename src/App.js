@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './App.scss';
 
 function App() {
 
@@ -7,7 +7,7 @@ function App() {
 
   // render
   return (
-    <div className="App">
+    <div className="app">
       <Canvas drawings={drawings} setDrawings={setDrawings} />
       <List drawings={drawings} />
     </div>
