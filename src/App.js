@@ -77,6 +77,7 @@ function Canvas(props) {
     ctx.closePath() // 마우스를 떼면 시작점과 끝점을 이어줌
     ctx.stroke()
 
+    // 새로운 path를 paths에 추가
     let newPaths = {
       ...paths,
       ['Polygon'+ idx] : path
@@ -109,9 +110,11 @@ function Canvas(props) {
       console.log('hi')
       Object.entries(paths).forEach((a, i) => {
         if (ctx.isPointInPath(a[1], x, y)) {
-          let clonePaths = {...paths}
+          let clonePaths = {...paths} // paths 복제한 객체
           delete clonePaths[a[0]]
-          setPaths(clonePaths)
+          setPaths(clonePaths) // 해당하는 path의 다각형을 삭제한 객체를 paths로 변경
+
+          // test
           console.log(a[0], paths[a[0]])
           console.log('deleted', paths)
         }
