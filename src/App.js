@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
+import { faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 import React, { useEffect, useRef, useState } from 'react';
 import './App.scss';
 
@@ -26,8 +27,8 @@ function Canvas(props) {
 
   const [deleteMode, setDeleteMode] = useState(false) // 삭제하기 모드 state
   const [isDrawing, setIsDrawing] = useState(false)
-  const [canvasInfo, setCanvasInfo] = useState([0, 0]) // 캔버스 너비, 높이 정보 - 계속 변함
   const [path, setPath] = useState(null) // 새로운 마우스 움직인 경로 state
+  const [idx, setIdx] = useState(1)
   const [ctx, setCtx] = useState()
 
   useEffect(() => {
@@ -36,7 +37,6 @@ function Canvas(props) {
     canvas.width = 800 // 캔버스 너비
     // canvas.height = window.innerHeight * 0.95 
     canvas.height = 600 // 캔버스 높이
-    setCanvasInfo([canvas.width, canvas.height])
 
     // console.log(canvas.width, canvas.height)
 
@@ -47,17 +47,19 @@ function Canvas(props) {
 
     setCtx(contextRef.current)
 
-  }, [])
+  }, [paths])
 
   useEffect(() => {
-    console.log('paths', paths)
-    // console.log(canvasInfo)
+    console.log('lets repaint paths', paths)
+
     // 캔버스에 그려진 이전 ctx 상태를 지우고 paths 배열에 저장된 것들을 다시 그려줌 
     contextRef.current.clearRect(0, 0, 800, 600)
-    Object.values(paths).forEach((a, i) => {
-      // console.log(a)
-      contextRef.current.stroke(a)
-    })
+    if (paths) {
+      Object.values(paths).forEach((a, i) => {
+        console.log(a)
+        contextRef.current.stroke(a)
+      })
+    }
 
   }, [paths])
 
@@ -77,9 +79,10 @@ function Canvas(props) {
 
     let newPaths = {
       ...paths,
-      ['Polygon'+ ++Object.keys(paths).length] : path
+      ['Polygon'+ idx] : path
     }
 
+    setIdx(idx+1)
     setPaths(newPaths)
   }
 
@@ -99,14 +102,34 @@ function Canvas(props) {
     }
   }
 
+  const deletePolygon = (e) => {
+    let x = e.pageX
+    let y = e.pageY
+    if (deleteMode) {
+      console.log('hi')
+      Object.entries(paths).forEach((a, i) => {
+        if (ctx.isPointInPath(a[1], x, y)) {
+          let clonePaths = {...paths}
+          delete clonePaths[a[0]]
+          setPaths(clonePaths)
+          console.log(a[0], paths[a[0]])
+          console.log('deleted', paths)
+        }
+      })
+    }
+  }
+
   return (
     <div className="container">
-        <FontAwesomeIcon icon={faSquare} />
+        <span onClick={() => {
+          setDeleteMode(!deleteMode)
+        }}>삭제모드<FontAwesomeIcon className="delete-check" icon={ deleteMode ? faSquareCheck : faSquare } /></span>
         <canvas
           ref={canvasRef}
-          onMouseDown={startDrawing}
-          onMouseUp={finishDrawing}
-          onMouseMove={drawing}
+          onMouseDown={deleteMode ? deletePolygon : startDrawing}
+          onMouseUp={deleteMode ? null : finishDrawing}
+          onMouseMove={deleteMode ? null : drawing}
+          // onClick={deleteMode ? deletePolygon : }
           // onMouseLeave={finishDrawing}      
         ></canvas>
     </div>
