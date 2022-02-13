@@ -145,7 +145,7 @@ function Canvas(props) {
     <div className="container">
         <span onClick={() => {
           setDeleteMode(!deleteMode)
-        }}>삭제모드<FontAwesomeIcon className="delete-check" icon={ deleteMode ? faSquareCheck : faSquare } /></span>
+        }}><FontAwesomeIcon className="delete-check" icon={ deleteMode ? faSquareCheck : faSquare } />&nbsp;delete mode</span>
         <canvas
           ref={canvasRef}
           onMouseDown={deleteMode ? deletePolygon : startDrawing}
