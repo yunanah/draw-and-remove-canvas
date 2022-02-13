@@ -25,6 +25,7 @@ function Canvas(props) {
   //화면 배율 조절을 위한 변수 설정 
   const scaleMultiplier = 0.8
 
+  //hooks
   useEffect(() => {
     // 캔버스 기본 설정 
     console.log('hello')
@@ -64,6 +65,9 @@ function Canvas(props) {
 
 
   }, [paths, scaleRate])
+
+
+  //logics
 
   // 그리기 시작 함수
   const startDrawing = () => {
