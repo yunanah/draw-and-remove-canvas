@@ -64,7 +64,7 @@ function Canvas(props) {
     }
 
 
-  }, [paths, scaleRate])
+  }, [paths, scaleRate, ctx])
 
 
   //logics
