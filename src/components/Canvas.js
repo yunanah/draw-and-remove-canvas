@@ -46,8 +46,8 @@ function Canvas(props) {
     console.log('lets repaint paths', paths)
 
     // 중앙을 기준으로 캔버스에 배율 적용
-    contextRef.current.setTransform(scaleRate, 0, 0, scaleRate, -(scaleRate-1)*(window.innerWidth/2), -(scaleRate-1)*(window.innerHeight/2))
-
+    contextRef.current.setTransform(scaleRate, 0, 0, scaleRate, -(scaleRate-1)*400, -(scaleRate-1)*300)
+    
     // 캔버스에 그려진 이전 contextRef.current 상태를 지움
     contextRef.current.clearRect(0, 0, 800, 600)
 
@@ -55,6 +55,7 @@ function Canvas(props) {
     if (paths) {
       Object.values(paths).forEach((a, i) => {
         // console.log(a)
+        // contextRef.current.strokeStyle = 'red'
         contextRef.current.stroke(a)
       })
     }
