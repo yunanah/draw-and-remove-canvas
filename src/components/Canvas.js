@@ -110,15 +110,14 @@ function Canvas(props) {
   }
 
   // 다각형 삭제 함수
-  const deletePolygon = (e) => {
-    let x = e.pageX
-    let y = e.pageY
+  const deletePolygon = ({ nativeEvent }) => {
+    const { offsetX, offsetY } = nativeEvent
 
     // 삭제 모드인 경우 paths state에 저장된 다각형 경로들 중 클릭한 점이 포함된 것이 있으면 paths에서 삭제함
     if (deleteMode) {
       // console.log('hi')
       Object.entries(paths).forEach((a, i) => {
-        if (ctx.isPointInPath(a[1], x, y)) {
+        if (ctx.isPointInPath(a[1], offsetX, offsetY)) {
           let clonePaths = {...paths} // paths 복제한 객체
           delete clonePaths[a[0]]
           setPaths(clonePaths) // 해당하는 path의 다각형을 삭제한 객체를 paths로 변경
