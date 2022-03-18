@@ -1,12 +1,9 @@
-# Lunit Challenge (Frontend Engineering coding interview)
-Frontend Engineering 직무 과제 제출용 Repository 입니다 (백유라)
-
 ## 기술스택
 - React
 - Sass를 활용한 스타일 코드 작성
   - 따라서 반드시 프로젝트 폴더에서 npm install 후 실행 바랍니다. 
 
-## 과제 내용
+## 구현 내용
 - Canvas와 List 컴포넌트로 구성된 페이지
 - Canvas에 마우스 클릭으로 그리기를 시작할 수 있고 마우스클릭을 떼면 그 점에서 그리기가 끝나고 시작점과 끝점을 이어 다각형이 완성됨
 - 완성한 다각형들은 오른쪽 List 에 항목으로 추가됨
