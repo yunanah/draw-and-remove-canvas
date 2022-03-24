@@ -63,7 +63,6 @@ function Canvas(props) {
       }
     }
 
-
   }, [paths, scaleRate, ctx])
 
 
@@ -143,20 +142,20 @@ function Canvas(props) {
   // render
   return (
     <div className="container">
-        <span onClick={() => {
-          setDeleteMode(!deleteMode)
-        }}><FontAwesomeIcon className="delete-check" icon={ deleteMode ? faSquareCheck : faSquare } />&nbsp;delete mode</span>
-        <canvas
-          ref={canvasRef}
-          onMouseDown={deleteMode ? deletePolygon : startDrawing}
-          onMouseUp={deleteMode ? null : finishDrawing}
-          onMouseMove={deleteMode ? null : drawing}    
-        ></canvas>
-        <div className="rate-control">
-          <p>{scaleRate.toFixed(2) * 100}%</p>
-          <FontAwesomeIcon className="zoom-in" icon={faCirclePlus} onClick={plusScale} />
-          <FontAwesomeIcon className="zoom-out" icon={faCircleMinus} onClick={minusScale} />
-        </div>
+      <span onClick={() => {
+        setDeleteMode(!deleteMode)
+      }}><FontAwesomeIcon className="delete-check" icon={ deleteMode ? faSquareCheck : faSquare } />&nbsp;delete mode</span>
+      <canvas
+        ref={canvasRef}
+        onMouseDown={deleteMode ? deletePolygon : startDrawing}
+        onMouseUp={deleteMode ? null : finishDrawing}
+        onMouseMove={deleteMode ? null : drawing}    
+      ></canvas>
+      <div className="rate-control">
+        <p>{scaleRate.toFixed(2) * 100}%</p>
+        <FontAwesomeIcon className="zoom-in" icon={faCirclePlus} onClick={plusScale} />
+        <FontAwesomeIcon className="zoom-out" icon={faCircleMinus} onClick={minusScale} />
+      </div>
     </div>
   );
 }
